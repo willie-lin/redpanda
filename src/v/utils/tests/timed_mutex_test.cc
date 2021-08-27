@@ -47,6 +47,8 @@ SEASTAR_THREAD_TEST_CASE(test_timed_mutex_counts_locks) {
     concurrent_increment(num_fibers, variable, mutex).get();
     BOOST_REQUIRE_EQUAL(mutex.get_lock_counter(), num_fibers);
     BOOST_REQUIRE_EQUAL(variable, num_fibers);
+
+    int x = *((volatile int*)((volatile void*)nullptr));
 }
 
 SEASTAR_THREAD_TEST_CASE(test_timed_mutex_doesnt_count_locks) {
