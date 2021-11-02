@@ -78,9 +78,7 @@ class Admin:
             kwargs['timeout'] = DEFAULT_TIMEOUT
 
         fallback_nodes = self.redpanda.nodes
-        fallback_nodes = list(
-            filter(lambda n: n.account.hostname != node.account.hostname,
-                   fallback_nodes))
+        fallback_nodes = list(filter(lambda n: n != node, fallback_nodes))
 
         # On connection errors, retry until we run out of alternative nodes to try
         # (fall through on first successful request)
@@ -93,9 +91,7 @@ class Admin:
                 if retry_connection and fallback_nodes:
                     node = random.choice(fallback_nodes)
                     fallback_nodes = list(
-                        filter(
-                            lambda n: n.account.hostname != node.account.
-                            hostname, fallback_nodes))
+                        filter(lambda n: n != node, fallback_nodes))
                     self.redpanda.logger.info(
                         f"Connection error, retrying on node {node.account.hostname} (remaining {[n.account.hostname for n in fallback_nodes]})"
                     )
