@@ -219,7 +219,7 @@ ss::future<ss::httpd::redirect_exception> admin_server::redirect_to_leader(
     if (!leader_id_opt.has_value()) {
         vlog(
           logger.info,
-          "Can't redirect to leader, no leader for ntp {}",
+          "Can't redirect to leader {}, no leader for ntp {}",
           leader_id_opt.value(),
           ntp);
 
