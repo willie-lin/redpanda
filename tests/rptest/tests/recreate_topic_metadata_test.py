@@ -31,7 +31,7 @@ class RecreateTopicMetadataTest(RedpandaTest):
                 'enable_leader_balancer': False
             })
 
-    @cluster(num_nodes=6)
+    @cluster(num_nodes=5)
     @parametrize(replication_factor=3)
     @parametrize(replication_factor=5)
     def test_recreated_topic_metadata_are_valid(self, replication_factor):
