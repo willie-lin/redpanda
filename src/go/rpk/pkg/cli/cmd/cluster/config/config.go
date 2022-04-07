@@ -32,23 +32,22 @@ func NewConfigCommand(fs afero.Fs) *cobra.Command {
 		Short: "Interact with cluster configuration properties.",
 		Long: `Interact with cluster configuration properties.
 
-Cluster properties are redpanda settings which apply to all nodes in
-the cluster.  These are separate to node properties, which are set with
+Cluster properties are redpanda settings that apply to all nodes in
+the cluster.  These are separate from node properties, which are set with
 'rpk redpanda config'.
 
 Use the 'edit' subcommand to interactively modify the cluster configuration, or
-'export' and 'import' to write configuration to a file that can be edited and
+'export' and 'import' to write a configuration to a file that can be edited and
 read back later.
 
-These commands take an optional '--all' flag to include all properties including
-low level tunables such as internal buffer sizes, that do not usually need
-to be changed during normal operations.  These properties generally require
-some expertize to set safely, so if in doubt, avoid using '--all'.
+These commands take an optional '--all' flag to include all properties. This includes
+low-level tunables such as internal buffer sizes, which do not usually need
+to be changed during normal operations. These properties generally require
+some expertise to set safely, so when in doubt, avoid using '--all'.
 
-Modified properties are propagated immediately to all nodes.  The 'status'
-subcommand can be used to verify that all nodes are up to date, and identify
-any settings which were rejected by a node, for example if a node is running a
-different redpanda version that does not recognize certain properties.`,
+Modified properties are propagated immediately to all nodes.  Use the 'status'
+subcommand to verify that all nodes are up to date, and to identify
+any settings that were rejected by a node. For example, a node might reject a setting if that node is running a redpanda version that does not recognize certain properties.`,
 	}
 
 	command.PersistentFlags().StringVar(
