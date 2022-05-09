@@ -67,8 +67,10 @@ get_binaries() {
     darwin/arm64) BINARIES="rpk" ;;
     linux/amd64) BINARIES="rpk" ;;
     linux/arm64) BINARIES="rpk" ;;
-    windows/amd64) BINARIES="rpk" ;;
-    windows/arm64) BINARIES="rpk" ;;
+
+# Windows binaries not supported at the moment
+#    windows/amd64) BINARIES="rpk" ;;
+#    windows/arm64) BINARIES="rpk" ;;
     *)
       log_crit "platform $PLATFORM is not supported.  Make sure this script is up-to-date and file request at https://github.com/${PREFIX}/issues/new"
       exit 1
